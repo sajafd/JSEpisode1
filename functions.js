@@ -5,7 +5,11 @@
  * - logs "Hello <name>" if there is a name
  */
 function greet(name) {
-  // Your code here
+  if (name.type === string) {
+    console.log(`Hello ${name}`);
+  } else {
+    console.log("Hello");
+  }
 }
 
 /**
@@ -14,8 +18,16 @@ function greet(name) {
  * - returns true if it's odd, false otherwise
  */
 function isOdd(n) {
-  // Your code here
+  if (n % 2 === 0){
+    return false
+  } else {
+    return true
+  }
 }
+
+//console.log("zero test " + isOdd(0));
+//console.log("one test " + isOdd(1));
+//console.log("two test " + isOdd(2));
 
 /**
  * oddsSmallerThan(n):
@@ -29,8 +41,19 @@ function isOdd(n) {
  * Hint: you can solve this without writing any loops!
  */
 function oddsSmallerThan(n) {
-  // Your code here
+  let oddNumber =[];
+  for (let i = 0 ; i < n ; i++ ){
+    if (isOdd(i) === true){
+      //console.log(i)
+      //console.log("i is odd")
+      oddNumber.push(i);
+      //console.log(oddNumber)
+    }
+  }
+  return oddNumber.length
 }
+
+//console.log(oddsSmallerThan(5));
 
 /**
  * squareOrDouble(n):
@@ -43,8 +66,15 @@ function oddsSmallerThan(n) {
  * squareOrDouble(9) -> 81
  */
 function squareOrDouble(n) {
-  // Your code here
+  if (isOdd(n) === false){
+    return n*2;
+  } else {
+    return n*n;
+  }
 }
+
+//console.log(squareOrDouble(16));
+//console.log(squareOrDouble(9));
 
 /**
  * ageFromCivilID(civilID):
@@ -64,7 +94,35 @@ function squareOrDouble(n) {
  *    ageFromCivilID(297111012345) -> 20
  */
 function ageFromCivilID(civilID) {
-  // Your code here
+  var civilID = civilID.toString();
+  let cent
+  if (civilID[0] === "1"){
+    cent = 18
+  } 
+  if (civilID[0] === "2"){
+    cent = 19 
+  } 
+  if (civilID[0] === "3"){
+    cent = 20
+  }
+  //console.log("century is: " + cent)
+  let year = civilID[1]+civilID[2];
+  //console.log("year is: " + year + " " + typeof year)
+  let fullYear = Number(cent.toString() + year)
+  //console.log("year is:" + fullYear);
+  let month = civilID[3]+civilID[4];
+  //console.log("month is: " + month)
+  let date = civilID[5]+civilID[6];
+  //console.log("date is: " + date)
+ 
+
+  var dateID = new Date (fullYear, month, date)
+  var dateToday = new Date ()
+  //console.log(dateID);
+  //console.log(dateToday);
+  let age = dateToday.getFullYear() - dateID.getFullYear();
+  //console.log("age is " + age);
+  return age
 }
 
 /**
@@ -79,8 +137,14 @@ function ageFromCivilID(civilID) {
  *    - Is NOT a member of the royal family
  */
 function canVoteInKuwait(civilID, isKuwaiti, isRoyal) {
-  // Your code here
+  if (ageFromCivilID(civilID)>21 && isKuwaiti && isRoyal===false){
+    return true
+  } else {
+    return false
+  }
 }
+
+//console.log(canVoteInKuwait(291111012345, true, false));
 
 module.exports = {
   greet,

@@ -41,7 +41,7 @@ function isOdd(n) {
  * Hint: you can solve this without writing any loops!
  */
 function oddsSmallerThan(n) {
-  let numOfOdds = Math.round((n - 1) / 2);
+  let numOfOdds = Math.floor(Math.abs(n / 2));
   return numOfOdds;
 }
 
@@ -109,10 +109,11 @@ function ageFromCivilID(civilID) {
 
   var dateID = new Date(fullYear, month, date);
   var dateToday = new Date();
-  //console.log(dateID);
-  //console.log(dateToday);
+  var monthID = dateID.getMonth();
+  var monthToday = dateToday.getMonth();
+
   let age = Math.round(dateToday.getFullYear() - dateID.getFullYear());
-  //console.log("age is " + age);
+
   return age;
 }
 

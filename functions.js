@@ -5,10 +5,10 @@
  * - logs "Hello <name>" if there is a name
  */
 function greet(name) {
-  if (name.type === string) {
-    console.log(`Hello ${name}`);
-  } else {
+  if (name === undefined) {
     console.log("Hello");
+  } else if (typeof name === "string") {
+    console.log(`Hello ${name}`);
   }
 }
 
@@ -18,10 +18,10 @@ function greet(name) {
  * - returns true if it's odd, false otherwise
  */
 function isOdd(n) {
-  if (n % 2 === 0){
-    return false
+  if (n % 2 === 0) {
+    return false;
   } else {
-    return true
+    return true;
   }
 }
 
@@ -41,19 +41,11 @@ function isOdd(n) {
  * Hint: you can solve this without writing any loops!
  */
 function oddsSmallerThan(n) {
-  let oddNumber =[];
-  for (let i = 0 ; i < n ; i++ ){
-    if (isOdd(i) === true){
-      //console.log(i)
-      //console.log("i is odd")
-      oddNumber.push(i);
-      //console.log(oddNumber)
-    }
-  }
-  return oddNumber.length
+  let numOfOdds = Math.round((n - 1) / 2);
+  return numOfOdds;
 }
 
-//console.log(oddsSmallerThan(5));
+//console.log(oddsSmallerThan(15));
 
 /**
  * squareOrDouble(n):
@@ -66,10 +58,10 @@ function oddsSmallerThan(n) {
  * squareOrDouble(9) -> 81
  */
 function squareOrDouble(n) {
-  if (isOdd(n) === false){
-    return n*2;
+  if (isOdd(n) === false) {
+    return n * 2;
   } else {
-    return n*n;
+    return n * n;
   }
 }
 
@@ -95,34 +87,33 @@ function squareOrDouble(n) {
  */
 function ageFromCivilID(civilID) {
   var civilID = civilID.toString();
-  let cent
-  if (civilID[0] === "1"){
-    cent = 18
-  } 
-  if (civilID[0] === "2"){
-    cent = 19 
-  } 
-  if (civilID[0] === "3"){
-    cent = 20
+  let cent;
+  if (civilID[0] === "1") {
+    cent = 18;
+  }
+  if (civilID[0] === "2") {
+    cent = 19;
+  }
+  if (civilID[0] === "3") {
+    cent = 20;
   }
   //console.log("century is: " + cent)
-  let year = civilID[1]+civilID[2];
+  let year = civilID[1] + civilID[2];
   //console.log("year is: " + year + " " + typeof year)
-  let fullYear = Number(cent.toString() + year)
+  let fullYear = Number(cent.toString() + year);
   //console.log("year is:" + fullYear);
-  let month = civilID[3]+civilID[4];
+  let month = civilID[3] + civilID[4];
   //console.log("month is: " + month)
-  let date = civilID[5]+civilID[6];
+  let date = civilID[5] + civilID[6];
   //console.log("date is: " + date)
- 
 
-  var dateID = new Date (fullYear, month, date)
-  var dateToday = new Date ()
+  var dateID = new Date(fullYear, month, date);
+  var dateToday = new Date();
   //console.log(dateID);
   //console.log(dateToday);
-  let age = dateToday.getFullYear() - dateID.getFullYear();
+  let age = Math.round(dateToday.getFullYear() - dateID.getFullYear());
   //console.log("age is " + age);
-  return age
+  return age;
 }
 
 /**
@@ -137,10 +128,10 @@ function ageFromCivilID(civilID) {
  *    - Is NOT a member of the royal family
  */
 function canVoteInKuwait(civilID, isKuwaiti, isRoyal) {
-  if (ageFromCivilID(civilID)>21 && isKuwaiti && isRoyal===false){
-    return true
+  if (ageFromCivilID(civilID) > 21 && isKuwaiti && isRoyal === false) {
+    return true;
   } else {
-    return false
+    return false;
   }
 }
 
